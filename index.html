@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Artikel Animasi</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
+
+    :root {
+      --grad1: #667eea;
+      --grad2: #764ba2;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(-45deg, var(--grad1), var(--grad2), #f093fb, #f5576c);
+      background-size: 400% 400%;
+      animation: gradMove 12s ease infinite;
+      padding: 40px 20px;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    @keyframes gradMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(12px);
+      border-radius: 24px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+      padding: 40px;
+      animation: fadeSlide 1s ease-out;
+    }
+
+    @keyframes fadeSlide {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    h1[contenteditable="true"], p[contenteditable="true"] {
+      outline: none;
+      transition: background 0.3s;
+    }
+
+    h1[contenteditable="true"]:focus, p[contenteditable="true"]:focus {
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 8px;
+      padding: 10px;
+    }
+
+    h1 {
+      font-size: 2.7em;
+      margin-bottom: 20px;
+      color: #fff;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    p {
+      font-size: 1.1em;
+      line-height: 1.8;
+      color: #f1f1f1;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 25px;
+      margin-right: 10px;
+      background: #fff;
+      color: #764ba2;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 30px;
+      font-size: 1em;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 0.9em;
+      color: #fff;
+      opacity: 0.8;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1 contenteditable="true" id="judul">Tulisan Super Unik dengan Animasi!</h1>
+    <p contenteditable="true" id="isi">
+      Kamu bisa klik langsung untuk mengubah teks ini. Semua perubahan tersimpan otomatis di browser-mu sendiri.
+      Nikmati background gradasi yang bergerak, animasi halus, dan nuansa modern yang bikin artikel terasa lebih hidup.
+      Kalau sudah puas, klik tombol di bawah untuk mengunduh versi HTML siap-publish!
+    </p>
+
+    <!-- Tombol iklan (tautan) -->
+    <a class="btn" href="https://www.effectivegatecpm.com/t3yqwi2ue?key=f2e77f1885fe160d896a8a771e871a53" target="_blank" rel="noopener">Kunjungi Situs Resmi</a>
+
+    <button class="btn" onclick="downloadHTML()">Unduh Artikel Jadi HTML</button>
+  </div>
+
+  <footer>
+    Dibuat dengan ❤️ menggunakan Website Artikel Generator Animasi
+  </footer>
+
+  <script>
+    // Simpan otomatis saat ketik
+    document.getElementById('judul').addEventListener('input', () => {
+      localStorage.setItem('judul', document.getElementById('judul').innerText);
+    });
+    document.getElementById('isi').addEventListener('input', () => {
+      localStorage.setItem('isi', document.getElementById('isi').innerText);
+    });
+
+    // Load otomatis
+    window.onload = () => {
+      const judul = localStorage.getItem('judul');
+      const isi = localStorage.getItem('isi');
+      if (judul) document.getElementById('judul').innerText = judul;
+      if (isi) document.getElementById('isi').innerText = isi;
+    };
+
+    // Download sebagai HTML baru
+    function downloadHTML() {
+      const judul = document.getElementById('judul').innerText;
+      const isi = document.getElementById('isi').innerText;
+      const html = `<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>${judul}</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #764ba2;
+      color: #fff;
+      padding: 40px 20px;
+    }
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background: rgba(255,255,255,0.1);
+      border-radius: 20px;
+      padding: 40px;
+      backdrop-filter: blur(10px);
+    }
+    h1 { font-size: 2.5em; margin-bottom: 20px; }
+    p { font-size: 1.1em; line-height: 1.8; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>${judul}</h1>
+    <p>${isi}</p>
+  </div>
+</body>
+</html>`;
+      const blob = new Blob([html], { type: 'text/html' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `${judul.replace(/[^a-z0-9]/gi, '_').toLowerCase()}.html`;
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+  </script>
+</body>
+</html>
